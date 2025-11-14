@@ -56,19 +56,7 @@ min_x, min_z = x_coords[min_index], z_coords[min_index]
 
 print(f"Lowest vertex at y={min_y:.4f} located at x={min_x:.4f}, z={min_z:.4f}")
 
-plane_vertices = np.array([
-    [x_coords.min(), min_y, z_coords.min()],
-    [x_coords.max(), min_y, z_coords.min()],
-    [x_coords.max(), min_y, z_coords.max()],
-    [x_coords.min(), min_y, z_coords.max()],
-])
-plane_triangles = np.array([[0, 1, 2], [0, 2, 3]])
 
-plane_mesh = o3d.geometry.TriangleMesh()
-plane_mesh.vertices = o3d.utility.Vector3dVector(plane_vertices)
-plane_mesh.triangles = o3d.utility.Vector3iVector(plane_triangles)
-plane_mesh.compute_vertex_normals()
-plane_mesh.paint_uniform_color([0.2, 0.6, 0.2])
 
 o3d_mesh = o3d.geometry.TriangleMesh()
 o3d_mesh.vertices = o3d.utility.Vector3dVector(mesh_vertices)
@@ -81,6 +69,6 @@ o3d_mesh.paint_uniform_color([0.8, 0.8, 0.8])
 axes = o3d.geometry.TriangleMesh.create_coordinate_frame(size=1)
 axes.paint_uniform_color([0.1, 0.1, 0.1])
 
-o3d.visualization.draw_geometries([o3d_mesh, plane_mesh, axes])
+o3d.visualization.draw_geometries([o3d_mesh, axes])
 
 print("Exported smplx.obj successfully!")
