@@ -19,8 +19,9 @@ import numpy as np
 from pathlib import Path
 
 
-MODEL_PATH = "'/Users/careycai/Desktop/Thakor Project/models/smplx/SMPLX_NEUTRAL.npz"  # where you place downloaded SMPL-X models
+MODEL_PATH = '/Users/careycai/Desktop/Thakor Project/models/smplx/SMPLX_NEUTRAL.npz'  # where you place downloaded SMPL-X models
 VERTICES_CSV = Path("smplx_vertices.csv")
+ROTATED_VERTICES_PATH = Path("smplx_y_to_z.csv")
 
 model = smplx.create(
     MODEL_PATH,
@@ -40,8 +41,16 @@ else:
     np.savetxt(VERTICES_CSV, vertices, delimiter=",")
     print(f"Computed vertices and saved cache to {VERTICES_CSV}")
 
-mesh = trimesh.Trimesh(vertices, faces)
-# mesh.export("smplx.obj")
+print(vertices[0:2, :])
+#multiply all coordinates by a transformation matrix to align the y axis with the z axis
+vertices = vertices.T
+rotation_matrix = [[1, 0, 0 ],
+                   [0, 0, -1],
+                   [0, 1, 0]]
+vertices_post_transformation = rotation_matrix @ vertices
+vertices_post_transformation_transposed = vertices_post_transformation.T
+
+mesh = trimesh.Trimesh(vertices_post_transformation_transposed, faces)
 
 mesh_vertices = np.asarray(mesh.vertices)
 faces = np.asarray(mesh.faces)
