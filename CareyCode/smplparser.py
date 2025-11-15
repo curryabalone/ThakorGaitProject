@@ -65,8 +65,6 @@ min_x, min_z = x_coords[min_index], z_coords[min_index]
 
 print(f"Lowest vertex at y={min_y:.4f} located at x={min_x:.4f}, z={min_z:.4f}")
 
-
-
 o3d_mesh = o3d.geometry.TriangleMesh()
 o3d_mesh.vertices = o3d.utility.Vector3dVector(mesh_vertices)
 o3d_mesh.triangles = o3d.utility.Vector3iVector(faces)
