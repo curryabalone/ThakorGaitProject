@@ -13,9 +13,7 @@ from pathlib import Path
 import torch.nn.functional as F
 import torch.nn as nn
 from trimesh.proximity import signed_distance
-import alphashape
-import shapely.geometry as geom
-
+from projection_utils import loss_function
 
 MODEL_PATH = '/Users/careycai/Desktop/Thakor Project/models/smplx/SMPLX_NEUTRAL.npz'
 VERTICES_CSV = Path("smplx_vertices.csv")
@@ -91,37 +89,12 @@ body_pts = np.array(body_pcd.points)
 mask1 = body_pts[:, 1] < -1
 mask2 = body_pts[:, 2] < 0
 filtered_body_pts = body_pts[mask1 & mask2]
-filtered_body_pts = body_pts
 filtered_body_pcd = o3d.geometry.PointCloud()
 filtered_body_pcd.points = o3d.utility.Vector3dVector(filtered_body_pts)
 
-foot_pcd = o3d_foot.sample_points_poisson_disk(10000)
+foot_pcd = o3d_foot.sample_points_poisson_disk(1000)
 foot_points = np.asarray(foot_pcd.points)
 
-x_y = np.array([
-    [1, 0],
-    [0, 1],
-    [0, 0]
-])
-proj_x_y = x_y@np.linalg.pinv(x_y)
-projected_foot_points = proj_x_y @ foot_points.T
-projected_foot_points = projected_foot_points.T
-
-projected_foot_pcd = o3d.geometry.PointCloud()
-projected_foot_pcd.points = o3d.utility.Vector3dVector(projected_foot_points)
-
-#compute the outline of the foot using concave hull
-alpha = 0.05
-shape = alphashape.alphashape(projected_foot_points[:, :2], alpha)
-boundary = np.array(shape.exterior.coords)
-boundary3d = np.zeros((boundary.shape[0], 3))
-boundary3d[:, :2] = boundary
-
-line_set = o3d.geometry.LineSet(
-    points=o3d.utility.Vector3dVector(boundary3d),
-    lines=o3d.utility.Vector2iVector([[i, i+1] for i in range(len(boundary3d)-1)])
-)
-
-o3d.visualization.draw_geometries([filtered_body_pcd, line_set, foot_pcd])
+loss_function(foot_points, filtered_body_pts)
 
 print("Finished optimization and visualization.")
