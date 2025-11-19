@@ -98,6 +98,6 @@ foot_pcd = o3d_foot.sample_points_poisson_disk(10000)
 filtered_body_pcd = o3d.geometry.PointCloud()
 filtered_body_pcd.points = o3d.utility.Vector3dVector(filtered_body_pts)
 
-o3d.visualization.draw_geometries([foot_pcd, filtered_body_pcd])
+o3d.visualization.draw_geometries([foot, filtered_body_pcd])
 
 print("Finished optimization and visualization.")
