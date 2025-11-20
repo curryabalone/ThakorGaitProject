@@ -86,7 +86,7 @@ o3d_foot.vertices = o3d.utility.Vector3dVector(foot_vertices)
 body_pcd = o3d_mesh.sample_points_poisson_disk(10000)
 body_pts = np.array(body_pcd.points)
 
-mask1 = body_pts[:, 1] < -1
+mask1 = body_pts[:, 1] < -1.2
 mask2 = body_pts[:, 2] < 0
 filtered_body_pts = body_pts[mask1 & mask2]
 filtered_body_pcd = o3d.geometry.PointCloud()
