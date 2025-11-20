@@ -79,7 +79,7 @@ o3d_foot = o3d.io.read_triangle_mesh(
 )
 o3d_foot.compute_vertex_normals()
 foot_vertices = np.asarray(o3d_foot.vertices)
-foot_vertices[:, 1] -= 1.0
+foot_vertices[:, 1] -= 1.3
 o3d_foot.vertices = o3d.utility.Vector3dVector(foot_vertices)
 
 # ---------- Sample point clouds ----------

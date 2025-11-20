@@ -2,7 +2,7 @@ import alphashape
 import shapely.geometry as geom
 import numpy as np
 import open3d as o3d
-from scipy.spatial import KDTree
+from scipy.spatial import cKDTree
 import math
 
 #generates the projection matrix AA+ that's rotated angle counter-clockwise around axis (0 for X, 1 for Y, 2 for Z). 
@@ -23,31 +23,26 @@ def loss_function(foot_points, body_points):
     A = np.zeros((3, 2))
     vis = o3d.visualization.Visualizer()
     vis.create_window()
+    total_loss = 0
+    count = 0
     for axis in range(0, 3):
         for j in range(0, 5):
             #generates the convex hulls for the foot
             generate_projections(2*np.pi/10*j, axis, A)
             proj = np.linalg.pinv(A)
-            projected_points = proj@(foot_points.T) 
-            projected_points = convex_hull(projected_points.T)
-            projected_points = A@projected_points.T
+            projected_points_foot = proj@(foot_points.T) 
+            projected_points_foot = convex_hull(projected_points_foot.T)
             pcd = o3d.geometry.PointCloud()
-            pcd.points = o3d.utility.Vector3dVector(projected_points.T)
-            vis.add_geometry(pcd)
-            vis.poll_events()
-            vis.update_renderer()
             #generates the convex hulls for the body
             generate_projections(2*np.pi/10*j, axis, A)
-            proj = np.linalg.pinv(A)
-            projected_points = proj@(body_points.T) 
-            projected_points = convex_hull(projected_points.T)
-            projected_points = A@projected_points.T
-            pcd = o3d.geometry.PointCloud()
-            pcd.points = o3d.utility.Vector3dVector(projected_points.T)
-            vis.add_geometry(pcd)
-            vis.poll_events()
-            vis.update_renderer()
-    vis.run()
+            projected_points_body = proj@(body_points.T) 
+            projected_points_body = convex_hull(projected_points_body.T)
+            #loss function
+            count += 1
+            total_loss += chamfer_2d(projected_points_body, projected_points_foot)
+    loss = total_loss/count
+    print("Loss: ", loss)
+    return loss
 
 def convex_hull(points):
     #shape of points: (n, 2)
@@ -69,5 +64,12 @@ def densify_polyline(poly, samples_per_edge=10):
         dense.append(seg)
     return np.vstack(dense)
 
-def rotation_translation(axis, angle, translation):
-    
+def chamfer_2d(F, B):
+
+    treeF = cKDTree(F)
+    treeB = cKDTree(B)
+
+    d_FB, _ = treeB.query(F)   # dist each F→nearest-B
+    d_BF, _ = treeF.query(B)   # dist each B→nearest-F
+
+    return d_FB.mean() + d_BF.mean()
