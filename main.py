@@ -13,7 +13,7 @@ from pathlib import Path
 import torch.nn.functional as F
 import torch.nn as nn
 from trimesh.proximity import signed_distance
-from projection_utils import loss_function
+from projection_utils import optimize_alignment, print_results
 
 MODEL_PATH = '/Users/careycai/Desktop/Thakor Project/models/smplx/SMPLX_NEUTRAL.npz'
 VERTICES_CSV = Path("smplx_vertices.csv")
@@ -95,6 +95,7 @@ filtered_body_pcd.points = o3d.utility.Vector3dVector(filtered_body_pts)
 foot_pcd = o3d_foot.sample_points_poisson_disk(1000)
 foot_points = np.asarray(foot_pcd.points)
 
-loss_function(foot_points, filtered_body_pts)
+print_results(foot_points, body_pts)
+optimize_alignment(foot_points, filtered_body_pts)
 
 print("Finished optimization and visualization.")

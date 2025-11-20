@@ -3,6 +3,7 @@ import shapely.geometry as geom
 import numpy as np
 import open3d as o3d
 from scipy.spatial import cKDTree
+from scipy.optimize import minimize
 import math
 
 #generates the projection matrix AA+ that's rotated angle counter-clockwise around axis (0 for X, 1 for Y, 2 for Z). 
@@ -21,8 +22,6 @@ def generate_projections(angle, axis, A):
 #calculates the net deviation of the current foot from the body
 def loss_function(foot_points, body_points):
     A = np.zeros((3, 2))
-    vis = o3d.visualization.Visualizer()
-    vis.create_window()
     total_loss = 0
     count = 0
     for axis in range(0, 3):
@@ -65,11 +64,67 @@ def densify_polyline(poly, samples_per_edge=10):
     return np.vstack(dense)
 
 def chamfer_2d(F, B):
-
     treeF = cKDTree(F)
     treeB = cKDTree(B)
-
     d_FB, _ = treeB.query(F)   # dist each F→nearest-B
     d_BF, _ = treeF.query(B)   # dist each B→nearest-F
-
     return d_FB.mean() + d_BF.mean()
+
+def rotation_matrix(rx, ry, rz):
+    cx, cy, cz = np.cos([rx, ry, rz])
+    sx, sy, sz = np.sin([rx, ry, rz])
+    Rx = np.array([[1, 0, 0],
+                   [0, cx, -sx],
+                   [0, sx, cx]])
+
+    Ry = np.array([[cy, 0, sy],
+                   [0, 1, 0],
+                   [-sy, 0, cy]])
+
+    Rz = np.array([[cz, -sz, 0],
+                   [sz,  cz, 0],
+                   [0,    0, 1]])
+    return Rz @ Ry @ Rx
+
+def transform_foot(points, params):
+    tx, ty, tz, rx, ry, rz = params
+    R = rotation_matrix(rx, ry, rz)
+    T = np.array([tx, ty, tz])
+    return (R @ points.T).T + T
+
+def objective_6d(params, foot_points, body_points):
+    foot_transformed = transform_foot(foot_points, params)
+    print("Params:", params)
+    return loss_function(foot_transformed, body_points)
+
+def optimize_6d(foot_points, body_points):
+    p0 = np.zeros(6)    
+    result = minimize(
+        lambda p: objective_6d(p, foot_points, body_points),
+        p0,
+        method='Powell',
+        options={'maxiter': 5}
+    )
+    return result.x, result.fun
+
+def optimize_alignment(foot_points, body_points):
+    best_params, best_loss = optimize_6d(foot_points, body_points)
+    print("Optimal tx,ty,tz,rx,ry,rz:", best_params)
+    print("Final loss:", best_loss)
+    return
+
+def print_results(foot_points, body_points):
+    foot_transformed = transform_foot(foot_points, np.asarray([-0.09247538,0.00912273,-0.11386828,-0.00103969,0.00810392,0]))
+    vis = o3d.visualization.Visualizer()
+    vis.create_window()
+    foot_transformed_pcd = o3d.geometry.PointCloud()
+    foot_transformed_pcd.points = o3d.utility.Vector3dVector(foot_transformed)
+    vis.add_geometry(foot_transformed_pcd)
+    vis.poll_events()
+    vis.update_renderer()
+    body_pcd = o3d.geometry.PointCloud()
+    body_pcd.points = o3d.utility.Vector3dVector(body_points)
+    vis.add_geometry(body_pcd)
+    vis.poll_events()
+    vis.update_renderer()
+    vis.run()
