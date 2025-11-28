@@ -13,8 +13,7 @@ from pathlib import Path
 import torch.nn.functional as F
 import torch.nn as nn
 from trimesh.proximity import signed_distance
-
-
+from projection_utils import optimize_alignment, print_results
 
 MODEL_PATH = '/Users/careycai/Desktop/Thakor Project/models/smplx/SMPLX_NEUTRAL.npz'
 VERTICES_CSV = Path("smplx_vertices.csv")
@@ -80,24 +79,23 @@ o3d_foot = o3d.io.read_triangle_mesh(
 )
 o3d_foot.compute_vertex_normals()
 foot_vertices = np.asarray(o3d_foot.vertices)
-foot_vertices[:, 1] -= 1.0
+foot_vertices[:, 1] -= 1.3
 o3d_foot.vertices = o3d.utility.Vector3dVector(foot_vertices)
 
 # ---------- Sample point clouds ----------
 body_pcd = o3d_mesh.sample_points_poisson_disk(10000)
 body_pts = np.array(body_pcd.points)
 
-# if you want masking later, you can uncomment these
-# mask1 = body_pts[:, 1] < -1
-# mask2 = body_pts[:, 2] < 0
-# filtered_body_pts = body_pts[mask1 & mask2]
-filtered_body_pts = body_pts
-
-foot_pcd = o3d_foot.sample_points_poisson_disk(10000)
-
+mask1 = body_pts[:, 1] < -1.2
+mask2 = body_pts[:, 2] < 0
+filtered_body_pts = body_pts[mask1 & mask2]
 filtered_body_pcd = o3d.geometry.PointCloud()
 filtered_body_pcd.points = o3d.utility.Vector3dVector(filtered_body_pts)
 
-o3d.visualization.draw_geometries([foot, filtered_body_pcd])
+foot_pcd = o3d_foot.sample_points_poisson_disk(1000)
+foot_points = np.asarray(foot_pcd.points)
+
+print_results(foot_points, body_pts)
+optimize_alignment(foot_points, filtered_body_pts)
 
 print("Finished optimization and visualization.")
