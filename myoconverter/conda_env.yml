@@ -1,0 +1,20 @@
+name: myoconverter
+channels:
+  - conda-forge
+  - opensim-org
+dependencies:
+  - python=3.10
+  - numpy
+  - scipy
+  - scikit-learn
+  - opensim=4.4.1
+  - matplotlib
+  - trimesh
+  - pyvista
+  - networkx
+  - seaborn
+  - pip
+  - pip:
+      - mujoco==3.1.1       # latest ARM-compatible
+      - loguru==0.7.0
+      - fpdf2==2.7.5

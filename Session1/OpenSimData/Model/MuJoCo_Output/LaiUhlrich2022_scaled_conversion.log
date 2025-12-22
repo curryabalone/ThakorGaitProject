@@ -1,0 +1,723 @@
+2025-12-21 01:31:32.971 | INFO     | myoconverter.O2MPipeline:O2MPipeline:52 - Start the conversion pipeline for : LaiUhlrich2022_scaled
+2025-12-21 01:31:32.971 | INFO     | myoconverter.O2MPipeline:coordinate_kwargs:75 - Coordinate the input configurations, remove conflicts.
+2025-12-21 01:31:32.971 | INFO     | myoconverter.conversion_steps.O2MSteps:__init__:84 - Given OpenSim model file: ../Session1/OpenSimData/Model/LaiUhlrich2022_scaled.osim
+2025-12-21 01:31:32.971 | INFO     | myoconverter.conversion_steps.O2MSteps:__init__:85 - Reading mesh files from folder ../Session1/OpenSimData/Model/Geometry
+2025-12-21 01:31:32.971 | INFO     | myoconverter.conversion_steps.O2MSteps:__init__:86 - Converted model will be saved in folder ../Session1/OpenSimData/Model/MuJoCo_Output
+2025-12-21 01:31:32.971 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:124 - Started step 1 conversion - cvt1.
+2025-12-21 01:31:33.824 | INFO     | myoconverter.xml.converter:convert:40 - Commencing the conversion procedure!
+2025-12-21 01:31:33.824 | INFO     | myoconverter.xml.converter:_parse_ground:138 - Parsing the ground
+2025-12-21 01:31:33.824 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Ground] ground
+2025-12-21 01:31:33.825 | INFO     | myoconverter.xml.converter:_parse_constraints:147 - Starting to parse constraints
+2025-12-21 01:31:33.825 | INFO     | myoconverter.xml.parsers:parse:59 - [ConstraintParser: CoordinateCouplerConstraint] patellofemoral_knee_angle_r_con
+2025-12-21 01:31:33.826 | INFO     | myoconverter.xml.parsers:parse:59 - [ConstraintParser: CoordinateCouplerConstraint] patellofemoral_knee_angle_l_con
+2025-12-21 01:31:33.826 | INFO     | myoconverter.xml.converter:_parse_bodies_and_joints:80 - Starting to parse bodies, wrapping objects, and joints
+2025-12-21 01:31:33.826 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] pelvis
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] Gmax1_at_pelvis_r
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] Gmax2_at_pelvis_r
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] Gmax3_at_pelvis_r
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] Gmax1_at_pelvis_l
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] Gmax2_at_pelvis_l
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] Gmax3_at_pelvis_l
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] PS_at_brim_r
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] PS_at_brim_l
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] IL_at_brim_r
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] IL_at_brim_l
+2025-12-21 01:31:33.840 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] ground_pelvis
+2025-12-21 01:31:33.841 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] femur_r
+2025-12-21 01:31:33.846 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GasLat_at_condyles_r
+2025-12-21 01:31:33.846 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GasMed_at_condyles_r
+2025-12-21 01:31:33.846 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] KnExt_at_fem_r
+2025-12-21 01:31:33.846 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] KnExtVL_at_fem_r
+2025-12-21 01:31:33.846 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AB_at_femshaft_r
+2025-12-21 01:31:33.847 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AL_at_femshaft_r
+2025-12-21 01:31:33.847 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AMprox_at_femshaft_r
+2025-12-21 01:31:33.847 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AMmid_at_femshaft_r
+2025-12-21 01:31:33.847 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AMdist_at_femshaft_r
+2025-12-21 01:31:33.847 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AMisch_at_condyles_r
+2025-12-21 01:31:33.847 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] PECT_at_femshaft_r
+2025-12-21 01:31:33.847 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] hip_r
+2025-12-21 01:31:33.847 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] tibia_r
+2025-12-21 01:31:33.853 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GasLat_at_shank_r
+2025-12-21 01:31:33.854 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GasMed_at_shank_r
+2025-12-21 01:31:33.854 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GR_at_condyles_r
+2025-12-21 01:31:33.854 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] SM_at_condyles_r
+2025-12-21 01:31:33.854 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] ST_at_condyles_r
+2025-12-21 01:31:33.854 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] BF_at_gastroc_r
+2025-12-21 01:31:33.854 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] walker_knee_r
+2025-12-21 01:31:33.854 | INFO     | myoconverter.xml.joints.CustomJoint:_designate_dof:412 - PolynomialFunction in walker_knee_r_translation1 is non-linear, not designating as DoF
+2025-12-21 01:31:33.986 | INFO     | myoconverter.xml.joints.CustomJoint:_designate_dof:412 - PolynomialFunction in walker_knee_r_translation2 is non-linear, not designating as DoF
+2025-12-21 01:31:34.063 | INFO     | myoconverter.xml.joints.CustomJoint:_designate_dof:412 - PolynomialFunction in walker_knee_r_translation3 is non-linear, not designating as DoF
+2025-12-21 01:31:34.244 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] talus_r
+2025-12-21 01:31:34.247 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] ankle_r
+2025-12-21 01:31:34.248 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] calcn_r
+2025-12-21 01:31:34.255 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] subtalar_r
+2025-12-21 01:31:34.255 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] toes_r
+2025-12-21 01:31:34.262 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] mtp_r
+2025-12-21 01:31:34.262 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] patella_r
+2025-12-21 01:31:34.266 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] patellofemoral_r
+2025-12-21 01:31:34.431 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] femur_l
+2025-12-21 01:31:34.436 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GasLat_at_condyles_l
+2025-12-21 01:31:34.436 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GasMed_at_condyles_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] KnExt_at_fem_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] KnExtVL_at_fem_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AB_at_femshaft_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AL_at_femshaft_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AMprox_at_femshaft_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AMmid_at_femshaft_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AMdist_at_femshaft_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] AMisch_at_condyles_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] PECT_at_femshaft_l
+2025-12-21 01:31:34.437 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] hip_l
+2025-12-21 01:31:34.438 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] tibia_l
+2025-12-21 01:31:34.443 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GasLat_at_shank_l
+2025-12-21 01:31:34.444 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GasMed_at_shank_l
+2025-12-21 01:31:34.444 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] GR_at_condyles_l
+2025-12-21 01:31:34.444 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] SM_at_condyles_l
+2025-12-21 01:31:34.444 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] ST_at_condyles_l
+2025-12-21 01:31:34.444 | INFO     | myoconverter.xml.parsers:parse:59 - [WrapObjectParser: WrapCylinder] BF_at_gastroc_l
+2025-12-21 01:31:34.444 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] walker_knee_l
+2025-12-21 01:31:34.444 | INFO     | myoconverter.xml.joints.CustomJoint:_designate_dof:412 - PolynomialFunction in walker_knee_l_translation1 is non-linear, not designating as DoF
+2025-12-21 01:31:34.510 | INFO     | myoconverter.xml.joints.CustomJoint:_designate_dof:412 - PolynomialFunction in walker_knee_l_translation2 is non-linear, not designating as DoF
+2025-12-21 01:31:34.566 | INFO     | myoconverter.xml.joints.CustomJoint:_designate_dof:412 - PolynomialFunction in walker_knee_l_translation3 is non-linear, not designating as DoF
+2025-12-21 01:31:34.726 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] talus_l
+2025-12-21 01:31:34.730 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] ankle_l
+2025-12-21 01:31:34.730 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] calcn_l
+2025-12-21 01:31:34.737 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] subtalar_l
+2025-12-21 01:31:34.738 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] toes_l
+2025-12-21 01:31:34.745 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] mtp_l
+2025-12-21 01:31:34.745 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] patella_l
+2025-12-21 01:31:34.748 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] patellofemoral_l
+2025-12-21 01:31:34.920 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] torso
+2025-12-21 01:31:35.614 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] back
+2025-12-21 01:31:35.617 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] humerus_r
+2025-12-21 01:31:35.622 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] acromial_r
+2025-12-21 01:31:35.622 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] ulna_r
+2025-12-21 01:31:35.628 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] elbow_r
+2025-12-21 01:31:35.629 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] radius_r
+2025-12-21 01:31:35.633 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] radioulnar_r
+2025-12-21 01:31:35.634 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] hand_r
+2025-12-21 01:31:35.737 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: WeldJoint] radius_hand_r
+2025-12-21 01:31:35.738 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] humerus_l
+2025-12-21 01:31:35.742 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] acromial_l
+2025-12-21 01:31:35.743 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] ulna_l
+2025-12-21 01:31:35.750 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] elbow_l
+2025-12-21 01:31:35.751 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] radius_l
+2025-12-21 01:31:35.754 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] radioulnar_l
+2025-12-21 01:31:35.755 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] hand_l
+2025-12-21 01:31:35.863 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: WeldJoint] radius_hand_l
+2025-12-21 01:31:35.863 | INFO     | myoconverter.xml.converter:_parse_forces:156 - Starting to parse forces, including path points and wrap paths
+2025-12-21 01:31:35.863 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addbrev_r
+2025-12-21 01:31:35.863 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addbrev_r-P1
+2025-12-21 01:31:35.863 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addbrev_r-P2
+2025-12-21 01:31:35.863 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.863 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.864 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addlong_r
+2025-12-21 01:31:35.864 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addlong_r-P1
+2025-12-21 01:31:35.864 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addlong_r-P2
+2025-12-21 01:31:35.864 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.864 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.869 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addmagDist_r
+2025-12-21 01:31:35.869 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagDist_r-P1
+2025-12-21 01:31:35.869 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagDist_r-P2
+2025-12-21 01:31:35.870 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.870 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.871 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addmagIsch_r
+2025-12-21 01:31:35.871 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagIsch_r-P1
+2025-12-21 01:31:35.872 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagIsch_r-P2
+2025-12-21 01:31:35.872 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.872 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.875 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addmagMid_r
+2025-12-21 01:31:35.875 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagMid_r-P1
+2025-12-21 01:31:35.875 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagMid_r-P2
+2025-12-21 01:31:35.875 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.875 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.876 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addmagProx_r
+2025-12-21 01:31:35.876 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagProx_r-P1
+2025-12-21 01:31:35.876 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagProx_r-P2
+2025-12-21 01:31:35.876 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.876 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.877 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] bflh_r
+2025-12-21 01:31:35.877 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bflh_r-P1
+2025-12-21 01:31:35.877 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bflh_r-P2
+2025-12-21 01:31:35.877 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bflh_r-P3
+2025-12-21 01:31:35.877 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.877 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] bfsh_r
+2025-12-21 01:31:35.877 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bfsh_r-P1
+2025-12-21 01:31:35.877 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bfsh_r-P2
+2025-12-21 01:31:35.878 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.878 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.878 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] edl_r
+2025-12-21 01:31:35.878 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_r-P1
+2025-12-21 01:31:35.878 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_r-P2
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_r-P3
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_r-P4
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_r-P5
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_r-P6
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] ehl_r
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_r-P1
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_r-P2
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_r-P3
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_r-P4
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_r-P5
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_r-P6
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_r-P7
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_r-P8
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] fdl_r
+2025-12-21 01:31:35.879 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_r-P1
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_r-P2
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_r-P3
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_r-P4
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_r-P5
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_r-P6
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_r-P7
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_r-P8
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] fhl_r
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_r-P1
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_r-P2
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_r-P3
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_r-P4
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_r-P5
+2025-12-21 01:31:35.880 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_r-P6
+2025-12-21 01:31:35.881 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_r-P7
+2025-12-21 01:31:35.881 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.881 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] gaslat_r
+2025-12-21 01:31:35.881 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] gaslat_r-P1
+2025-12-21 01:31:35.881 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] gaslat_r-P2
+2025-12-21 01:31:35.881 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.881 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.882 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap_0
+2025-12-21 01:31:35.883 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] gasmed_r
+2025-12-21 01:31:35.883 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] gasmed_r-P1
+2025-12-21 01:31:35.883 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] gasmed_r-P2
+2025-12-21 01:31:35.883 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.883 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.883 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap_0
+2025-12-21 01:31:35.884 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmax1_r
+2025-12-21 01:31:35.884 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax1_r-P1
+2025-12-21 01:31:35.884 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax1_r-P2
+2025-12-21 01:31:35.884 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax1_r-P3
+2025-12-21 01:31:35.884 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax1_r-P4
+2025-12-21 01:31:35.884 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.884 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.885 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmax2_r
+2025-12-21 01:31:35.885 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax2_r-P1
+2025-12-21 01:31:35.886 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax2_r-P2
+2025-12-21 01:31:35.886 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax2_r-P3
+2025-12-21 01:31:35.886 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax2_r-P4
+2025-12-21 01:31:35.886 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.886 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.888 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmax3_r
+2025-12-21 01:31:35.888 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax3_r-P1
+2025-12-21 01:31:35.888 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax3_r-P2
+2025-12-21 01:31:35.888 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax3_r-P3
+2025-12-21 01:31:35.888 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax3_r-P4
+2025-12-21 01:31:35.888 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.888 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.889 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmed1_r
+2025-12-21 01:31:35.889 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed1_r-P1
+2025-12-21 01:31:35.889 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed1_r-P2_0
+2025-12-21 01:31:35.889 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.889 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmed2_r
+2025-12-21 01:31:35.890 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed2_r-P1
+2025-12-21 01:31:35.890 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed2_r-P2_0
+2025-12-21 01:31:35.890 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmed3_r
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed3_r-P1
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed3_r-P2_0
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmin1_r
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin1_r-P1
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin1_r-P2
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmin2_r
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin2_r-P1
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin2_r-P2
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmin3_r
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin3_r-P1
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin3_r-P2
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.891 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] grac_r
+2025-12-21 01:31:35.892 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] grac_r-P1
+2025-12-21 01:31:35.892 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] grac_r-P2
+2025-12-21 01:31:35.892 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] grac_r-P3
+2025-12-21 01:31:35.892 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.892 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.893 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] iliacus_r
+2025-12-21 01:31:35.893 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] iliacus_r-P1
+2025-12-21 01:31:35.894 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] iliacus_r-P2
+2025-12-21 01:31:35.894 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] iliacus_r-P3
+2025-12-21 01:31:35.894 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] iliacus_r-P4
+2025-12-21 01:31:35.894 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.894 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.894 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] perbrev_r
+2025-12-21 01:31:35.895 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_r-P1
+2025-12-21 01:31:35.895 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_r-P2
+2025-12-21 01:31:35.895 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_r-P3
+2025-12-21 01:31:35.895 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_r-P4
+2025-12-21 01:31:35.895 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_r-P5
+2025-12-21 01:31:35.895 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.895 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] perlong_r
+2025-12-21 01:31:35.895 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_r-P1
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_r-P2
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_r-P3
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_r-P4
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_r-P5
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_r-P6
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_r-P7
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] piri_r
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] piri_r-P1
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] piri_r-P2
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] piri_r-P3
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] psoas_r
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_r-P1
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_r-P2
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_r-P3
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_r-P4
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.896 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.897 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] recfem_r
+2025-12-21 01:31:35.897 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_r-P1
+2025-12-21 01:31:35.897 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_r-P2
+2025-12-21 01:31:35.897 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_r-P3
+2025-12-21 01:31:35.897 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_r-P4
+2025-12-21 01:31:35.897 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_r-P5
+2025-12-21 01:31:35.897 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.897 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] sart_r
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_r-P1
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_r-P2
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_r-P3
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_r-P4
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_r-P5
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] semimem_r
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semimem_r-P1
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semimem_r-P2
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.899 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.900 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] semiten_r
+2025-12-21 01:31:35.900 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semiten_r-P1
+2025-12-21 01:31:35.900 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semiten_r-P2
+2025-12-21 01:31:35.900 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semiten_r-P3
+2025-12-21 01:31:35.900 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.900 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.901 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] soleus_r
+2025-12-21 01:31:35.901 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] soleus_r-P1
+2025-12-21 01:31:35.902 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] soleus_r-P2
+2025-12-21 01:31:35.902 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.902 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] tfl_r
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tfl_r-P1
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tfl_r-P2
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tfl_r-P3
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tfl_r-P4
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] tibant_r
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibant_r-P1
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibant_r-P2
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibant_r-P3
+2025-12-21 01:31:35.903 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibant_r-P4
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] tibpost_r
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibpost_r-P1
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibpost_r-P2
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibpost_r-P3
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibpost_r-P4
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] vasint_r
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_r-P1
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_r-P2
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_r-P3
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_r-P4
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_r-P5
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.904 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.906 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] vaslat_r
+2025-12-21 01:31:35.906 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_r-P1
+2025-12-21 01:31:35.906 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_r-P2
+2025-12-21 01:31:35.906 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_r-P3
+2025-12-21 01:31:35.906 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_r-P4
+2025-12-21 01:31:35.906 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_r-P5
+2025-12-21 01:31:35.906 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.906 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.908 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] vasmed_r
+2025-12-21 01:31:35.908 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_r-P1
+2025-12-21 01:31:35.908 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_r-P2
+2025-12-21 01:31:35.908 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_r-P3
+2025-12-21 01:31:35.908 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_r-P4
+2025-12-21 01:31:35.908 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_r-P5
+2025-12-21 01:31:35.908 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.908 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.909 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addbrev_l
+2025-12-21 01:31:35.910 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addbrev_l-P1
+2025-12-21 01:31:35.910 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addbrev_l-P2
+2025-12-21 01:31:35.910 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.910 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.910 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addlong_l
+2025-12-21 01:31:35.910 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addlong_l-P1
+2025-12-21 01:31:35.911 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addlong_l-P2
+2025-12-21 01:31:35.911 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.911 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.911 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addmagDist_l
+2025-12-21 01:31:35.911 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagDist_l-P1
+2025-12-21 01:31:35.911 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagDist_l-P2
+2025-12-21 01:31:35.911 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.911 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.913 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addmagIsch_l
+2025-12-21 01:31:35.914 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagIsch_l-P1
+2025-12-21 01:31:35.914 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagIsch_l-P2
+2025-12-21 01:31:35.914 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.914 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.915 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addmagMid_l
+2025-12-21 01:31:35.915 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagMid_l-P1
+2025-12-21 01:31:35.915 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagMid_l-P2
+2025-12-21 01:31:35.915 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.915 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.916 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] addmagProx_l
+2025-12-21 01:31:35.916 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagProx_l-P1
+2025-12-21 01:31:35.916 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] addmagProx_l-P2
+2025-12-21 01:31:35.916 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.916 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.916 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] bflh_l
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bflh_l-P1
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bflh_l-P2
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bflh_l-P3
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] bfsh_l
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bfsh_l-P1
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bfsh_l-P2
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.917 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] edl_l
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_l-P1
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_l-P2
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_l-P3
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_l-P4
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_l-P5
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] edl_l-P6
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] ehl_l
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_l-P1
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_l-P2
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_l-P3
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_l-P4
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_l-P5
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_l-P6
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_l-P7
+2025-12-21 01:31:35.918 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] ehl_l-P8
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] fdl_l
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_l-P1
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_l-P2
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_l-P3
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_l-P4
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_l-P5
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_l-P6
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_l-P7
+2025-12-21 01:31:35.919 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fdl_l-P8
+2025-12-21 01:31:35.938 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.938 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] fhl_l
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_l-P1
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_l-P2
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_l-P3
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_l-P4
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_l-P5
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_l-P6
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] fhl_l-P7
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.939 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] gaslat_l
+2025-12-21 01:31:35.940 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] gaslat_l-P1
+2025-12-21 01:31:35.940 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] gaslat_l-P2
+2025-12-21 01:31:35.940 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.940 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.941 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap_0
+2025-12-21 01:31:35.942 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] gasmed_l
+2025-12-21 01:31:35.942 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] gasmed_l-P1
+2025-12-21 01:31:35.942 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] gasmed_l-P2
+2025-12-21 01:31:35.942 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.942 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.948 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap_0
+2025-12-21 01:31:35.948 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmax1_l
+2025-12-21 01:31:35.949 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax1_l-P1
+2025-12-21 01:31:35.949 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax1_l-P2
+2025-12-21 01:31:35.949 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax1_l-P3
+2025-12-21 01:31:35.949 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax1_l-P4
+2025-12-21 01:31:35.949 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.949 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.950 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmax2_l
+2025-12-21 01:31:35.950 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax2_l-P1
+2025-12-21 01:31:35.950 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax2_l-P2
+2025-12-21 01:31:35.950 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax2_l-P3
+2025-12-21 01:31:35.950 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax2_l-P4
+2025-12-21 01:31:35.950 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.950 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.953 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmax3_l
+2025-12-21 01:31:35.953 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax3_l-P1
+2025-12-21 01:31:35.954 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax3_l-P2
+2025-12-21 01:31:35.954 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax3_l-P3
+2025-12-21 01:31:35.954 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmax3_l-P4
+2025-12-21 01:31:35.954 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.954 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.955 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmed1_l
+2025-12-21 01:31:35.955 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed1_l-P1
+2025-12-21 01:31:35.955 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed1_l-P2
+2025-12-21 01:31:35.955 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.955 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmed2_l
+2025-12-21 01:31:35.955 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed2_l-P1
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed2_l-P2
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmed3_l
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed3_l-P1
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmed3_l-P2
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmin1_l
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin1_l-P1
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin1_l-P2
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmin2_l
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin2_l-P1
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin2_l-P2
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glmin3_l
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin3_l-P1
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glmin3_l-P2
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] grac_l
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] grac_l-P1
+2025-12-21 01:31:35.956 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] grac_l-P2
+2025-12-21 01:31:35.957 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] grac_l-P3
+2025-12-21 01:31:35.957 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.957 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.958 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] iliacus_l
+2025-12-21 01:31:35.958 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] iliacus_l-P1
+2025-12-21 01:31:35.958 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] iliacus_l-P2
+2025-12-21 01:31:35.958 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] iliacus_l-P3
+2025-12-21 01:31:35.958 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] iliacus_l-P4
+2025-12-21 01:31:35.958 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.958 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] perbrev_l
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_l-P1
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_l-P2
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_l-P3
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_l-P4
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perbrev_l-P5
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] perlong_l
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_l-P1
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_l-P2
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_l-P3
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_l-P4
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_l-P5
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_l-P6
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] perlong_l-P7
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] piri_l
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] piri_l-P1
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] piri_l-P2
+2025-12-21 01:31:35.959 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] piri_l-P3
+2025-12-21 01:31:35.960 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.960 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] psoas_l
+2025-12-21 01:31:35.960 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_l-P1
+2025-12-21 01:31:35.960 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_l-P2
+2025-12-21 01:31:35.960 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_l-P3
+2025-12-21 01:31:35.960 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_l-P4
+2025-12-21 01:31:35.960 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.960 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.961 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] recfem_l
+2025-12-21 01:31:35.961 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_l-P1
+2025-12-21 01:31:35.961 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_l-P2
+2025-12-21 01:31:35.961 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_l-P3
+2025-12-21 01:31:35.961 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_l-P4
+2025-12-21 01:31:35.961 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] recfem_l-P5
+2025-12-21 01:31:35.961 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.961 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.963 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] sart_l
+2025-12-21 01:31:35.963 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_l-P1
+2025-12-21 01:31:35.963 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_l-P2
+2025-12-21 01:31:35.963 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_l-P3
+2025-12-21 01:31:35.963 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_l-P4
+2025-12-21 01:31:35.963 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] sart_l-P5
+2025-12-21 01:31:35.963 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.963 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] semimem_l
+2025-12-21 01:31:35.964 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semimem_l-P1
+2025-12-21 01:31:35.964 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semimem_l-P2
+2025-12-21 01:31:35.964 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.964 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.965 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] semiten_l
+2025-12-21 01:31:35.965 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semiten_l-P1
+2025-12-21 01:31:35.965 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semiten_l-P2
+2025-12-21 01:31:35.965 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] semiten_l-P3
+2025-12-21 01:31:35.965 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.965 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.966 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] soleus_l
+2025-12-21 01:31:35.966 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] soleus_l-P1
+2025-12-21 01:31:35.966 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] soleus_l-P2
+2025-12-21 01:31:35.966 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.966 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] tfl_l
+2025-12-21 01:31:35.966 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tfl_l-P1
+2025-12-21 01:31:35.966 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tfl_l-P2
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tfl_l-P3
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tfl_l-P4
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] tibant_l
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibant_l-P1
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibant_l-P2
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibant_l-P3
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibant_l-P4
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] tibpost_l
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibpost_l-P1
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibpost_l-P2
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibpost_l-P3
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tibpost_l-P4
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] vasint_l
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_l-P1
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_l-P2
+2025-12-21 01:31:35.967 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_l-P3
+2025-12-21 01:31:35.968 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_l-P4
+2025-12-21 01:31:35.968 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasint_l-P5
+2025-12-21 01:31:35.968 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.968 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.970 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] vaslat_l
+2025-12-21 01:31:35.970 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_l-P1
+2025-12-21 01:31:35.970 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_l-P2
+2025-12-21 01:31:35.970 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_l-P3
+2025-12-21 01:31:35.970 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_l-P4
+2025-12-21 01:31:35.970 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vaslat_l-P5
+2025-12-21 01:31:35.970 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.970 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.972 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] vasmed_l
+2025-12-21 01:31:35.972 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_l-P1
+2025-12-21 01:31:35.972 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_l-P2
+2025-12-21 01:31:35.972 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_l-P3
+2025-12-21 01:31:35.972 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_l-P4
+2025-12-21 01:31:35.972 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vasmed_l-P5
+2025-12-21 01:31:35.972 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2025-12-21 01:31:35.972 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapParser: PathWrap] pathwrap
+2025-12-21 01:31:35.974 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] lumbar_ext
+2025-12-21 01:31:35.974 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] lumbar_bend
+2025-12-21 01:31:35.974 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] lumbar_rot
+2025-12-21 01:31:35.974 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] shoulder_flex_r
+2025-12-21 01:31:35.974 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] shoulder_add_r
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] shoulder_rot_r
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] elbow_flex_r
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] pro_sup_r
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] shoulder_flex_l
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] shoulder_add_l
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] shoulder_rot_l
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] elbow_flex_l
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: CoordinateActuator] pro_sup_l
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.converter:_parse_markers:165 - Starting to parse markers
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r.ASIS_study
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L.ASIS_study
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r.PSIS_study
+2025-12-21 01:31:35.975 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L.PSIS_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_knee_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_mknee_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_ankle_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_mankle_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_toe_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_5meta_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_calc_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_knee_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_mknee_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_ankle_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_mankle_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_toe_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_calc_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_5meta_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_shoulder_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_shoulder_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] C7_study
+2025-12-21 01:31:35.976 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_lelbow_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_melbow_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_lwrist_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_mwrist_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_lelbow_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_melbow_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_lwrist_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_mwrist_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_thigh1_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_thigh2_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_thigh3_study
+2025-12-21 01:31:35.977 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_thigh1_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_thigh2_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_thigh3_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_sh1_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_sh2_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] r_sh3_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_sh1_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_sh2_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] L_sh3_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] RHJC_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.parsers:parse:59 - [MarkerParser: Marker] LHJC_study
+2025-12-21 01:31:35.978 | INFO     | myoconverter.xml.converter:_set_keyframe:176 - Setting the default keyframe
+2025-12-21 01:31:35.979 | INFO     | myoconverter.xml.converter:convert:65 - Writing the converted model into ../Session1/OpenSimData/Model/MuJoCo_Output/LaiUhlrich2022_scaled_cvt1.xml
+2025-12-21 01:31:35.981 | INFO     | myoconverter.xml.converter:convert:68 - All good, conversion procedure is finished
+2025-12-21 01:31:35.981 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:126 - Finished step 1 conversion - cvt1.
+2025-12-21 01:31:35.981 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:132 - Started step 1 validation - val1.
+2025-12-21 01:31:35.981 | INFO     | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:123 - Extract marker names (as endpoints) from osim model
+2025-12-21 01:31:36.014 | INFO     | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:145 - Get the endpoint locations by meshing the joint angles within the range limits
+2025-12-21 01:31:39.366 | INFO     | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:152 - Check if the joint motion ranges are the same between Osim and Mjc models
+2025-12-21 01:31:39.367 | WARNING  | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:163 - Joint range at pelvis_rotation are not matching
+2025-12-21 01:31:39.367 | WARNING  | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:163 - Joint range at arm_flex_r are not matching
+2025-12-21 01:31:39.367 | WARNING  | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:163 - Joint range at arm_add_r are not matching
+2025-12-21 01:31:39.367 | WARNING  | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:163 - Joint range at arm_rot_r are not matching
+2025-12-21 01:31:39.367 | WARNING  | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:163 - Joint range at arm_flex_l are not matching
+2025-12-21 01:31:39.367 | WARNING  | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:163 - Joint range at arm_add_l are not matching
+2025-12-21 01:31:39.367 | WARNING  | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:163 - Joint range at arm_rot_l are not matching
+2025-12-21 01:31:39.368 | INFO     | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:172 - Finished with joint operation range check. Saved Results
+2025-12-21 01:31:39.368 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:180 - Plot each endpoint's location errors in x, y, z.
+2025-12-21 01:31:39.368 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r.ASIS_study
+2025-12-21 01:31:39.486 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L.ASIS_study
+2025-12-21 01:31:39.549 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r.PSIS_study
+2025-12-21 01:31:39.612 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L.PSIS_study
+2025-12-21 01:31:39.675 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_knee_study
+2025-12-21 01:31:39.737 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_mknee_study
+2025-12-21 01:31:39.800 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_ankle_study
+2025-12-21 01:31:39.863 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_mankle_study
+2025-12-21 01:31:39.977 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_toe_study
+2025-12-21 01:31:40.040 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_5meta_study
+2025-12-21 01:31:40.103 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_calc_study
+2025-12-21 01:31:40.167 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_knee_study
+2025-12-21 01:31:40.230 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_mknee_study
+2025-12-21 01:31:40.295 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_ankle_study
+2025-12-21 01:31:40.361 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_mankle_study
+2025-12-21 01:31:40.479 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_toe_study
+2025-12-21 01:31:40.543 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_calc_study
+2025-12-21 01:31:40.611 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_5meta_study
+2025-12-21 01:31:40.675 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_shoulder_study
+2025-12-21 01:31:40.739 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_shoulder_study
+2025-12-21 01:31:40.806 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : C7_study
+2025-12-21 01:31:40.870 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_lelbow_study
+2025-12-21 01:31:40.933 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_melbow_study
+2025-12-21 01:31:41.052 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_lwrist_study
+2025-12-21 01:31:41.115 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_mwrist_study
+2025-12-21 01:31:41.180 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_lelbow_study
+2025-12-21 01:31:41.243 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_melbow_study
+2025-12-21 01:31:41.308 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_lwrist_study
+2025-12-21 01:31:41.374 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_mwrist_study
+2025-12-21 01:31:41.439 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_thigh1_study
+2025-12-21 01:31:41.502 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_thigh2_study
+2025-12-21 01:31:41.621 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_thigh3_study
+2025-12-21 01:31:41.685 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_thigh1_study
+2025-12-21 01:31:41.747 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_thigh2_study
+2025-12-21 01:31:41.812 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_thigh3_study
+2025-12-21 01:31:41.875 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_sh1_study
+2025-12-21 01:31:41.939 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_sh2_study
+2025-12-21 01:31:42.002 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : r_sh3_study
+2025-12-21 01:31:42.064 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_sh1_study
+2025-12-21 01:31:42.188 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_sh2_study
+2025-12-21 01:31:42.252 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : L_sh3_study
+2025-12-21 01:31:42.316 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : RHJC_study
+2025-12-21 01:31:42.392 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:192 - Endpoint : LHJC_study
+2025-12-21 01:31:42.455 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:256 - Generate overall error Bar plot
+2025-12-21 01:31:42.673 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:142 - Finished step 1 validation - val1.
+2025-12-21 01:31:42.673 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:281 - Generating pdf report based on the validation results.
+2025-12-21 01:31:42.673 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:282 -    This may take a while, suggest to do this after all validation steps...

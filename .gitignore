@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.hypothesis/
+.pytest_cache/
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+
+# Build artifacts
+myoconverter/docs/build/
+
+# MuJoCo logs
+MUJOCO_LOG.TXT
