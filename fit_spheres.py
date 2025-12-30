@@ -83,8 +83,8 @@ def create_square_wireframes(cell_centers, cell_size, y_plane, color=[0, 0.8, 0.
 
 
 def create_contact_spheres(cell_centers, cell_size, y_plane, color=[0, 0.7, 0.3]):
-    """Create Open3D sphere meshes at each cell center. Radius = half cell size."""
-    radius = cell_size / 2
+    """Create Open3D sphere meshes at each cell center. Radius = 0.4 * cell size."""
+    radius = cell_size * 0.4
     spheres = []
     for cx, cz in cell_centers:
         sphere = o3d.geometry.TriangleMesh.create_sphere(radius=radius)
@@ -140,11 +140,14 @@ if __name__ == '__main__':
     # Create visualization elements
     contour = create_contour_lineset(hull_points, y_plane, color=[1, 0, 0])
     squares = create_square_wireframes(cell_centers, cell_size, y_plane, color=[0, 0.8, 0.2])
+    spheres, sphere_radius = create_contact_spheres(cell_centers, cell_size, y_plane)
     coord_frame = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.05)
     o3d_foot.paint_uniform_color([0.7, 0.7, 0.9])
     
+    print(f"  Sphere radius: {sphere_radius * 1000:.2f} mm")
+    
     print("\nOpening 3D visualization...")
     o3d.visualization.draw_geometries(
-        [o3d_foot, contour, squares, coord_frame],
-        window_name=f"Foot with {len(cell_centers)} Square Regions"
+        [o3d_foot, contour, squares, coord_frame] + spheres,
+        window_name=f"Foot with {len(cell_centers)} Contact Spheres"
     )
