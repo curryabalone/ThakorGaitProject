@@ -997,9 +997,7 @@
       <site name="semiten_l_semiten_l-P1" pos="-0.10476003376475999 -0.12559165375560999 -0.057376304175549994"/>
       <site name="tfl_l_tfl_l-P1" pos="-0.020184977603999999 0.011025604080699998 -0.14371928618730001"/>
     </body>
-    <body name="ground" pos="0 0 0">
-      <geom name="ground_plane" type="plane" size="10 10 0.1" euler="-90 0 0" rgba="0.8 0.8 0.8 1" contype="1" conaffinity="1"/>
-    </body>
+    <geom name="ground_plane" type="plane" size="10 10 0.1" pos="0 0 -0.144503" rgba="0.8 0.8 0.8 1" contype="1" conaffinity="1"/>
   </worldbody>
   <asset>
     <texture type="skybox" builtin="gradient" rgb1="1 1 1" rgb2="0.6 0.8 1" width="256" height="256"/>

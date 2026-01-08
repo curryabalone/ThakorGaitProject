@@ -11,22 +11,76 @@ import numpy as np
 from fit_spheres import fit_contact_spheres, ContactSphereResult
 
 
-def add_ground_plane(worldbody: ET.Element) -> str:
-    """Add a ground plane geom to the worldbody. Returns the geom name."""
-    ground_body = ET.SubElement(worldbody, "body")
-    ground_body.set("name", "ground")
-    ground_body.set("pos", "0 0 0")
-
-    ground_geom = ET.SubElement(ground_body, "geom")
+def add_ground_plane(worldbody: ET.Element, ground_height: float = 0.0) -> str:
+    """Add a ground plane geom directly to worldbody. Returns the geom name.
+    
+    Args:
+        worldbody: The worldbody XML element
+        ground_height: Height of ground plane in MuJoCo world Z coords
+    """
+    # Add ground plane directly to worldbody (no body wrapper needed)
+    # MuJoCo's default plane has normal +Z which is "up" in world frame
+    ground_geom = ET.SubElement(worldbody, "geom")
     ground_geom.set("name", "ground_plane")
     ground_geom.set("type", "plane")
     ground_geom.set("size", "10 10 0.1")
-    ground_geom.set("euler", "-90 0 0")  # Rotate -90° around X to make XZ plane (normal +Y)
+    ground_geom.set("pos", f"0 0 {ground_height:.6f}")
     ground_geom.set("rgba", "0.8 0.8 0.8 1")
     ground_geom.set("contype", "1")
     ground_geom.set("conaffinity", "1")
     
     return "ground_plane"
+
+
+def compute_ground_height_from_mujoco(xml_path: str, clearance: float = 0.001) -> float:
+    """
+    Load the model in MuJoCo and find the actual lowest contact sphere position.
+    
+    This accounts for keyframes and initial joint positions that affect the pose.
+    
+    Args:
+        xml_path: Path to the MuJoCo XML with contact spheres already added
+        clearance: Gap between sphere bottoms and ground
+    
+    Returns:
+        Ground height in world Z coordinates
+    """
+    import mujoco
+    
+    m = mujoco.MjModel.from_xml_path(xml_path)
+    d = mujoco.MjData(m)
+    
+    # Apply keyframe if exists (this sets the default pose)
+    if m.nkey > 0:
+        mujoco.mj_resetDataKeyframe(m, d, 0)
+    
+    mujoco.mj_forward(m, d)
+    
+    # Find lowest contact sphere
+    min_z = float('inf')
+    sphere_radius = 0.0
+    
+    for i in range(m.ngeom):
+        name = mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_GEOM, i)
+        if name and 'contact_sphere' in name:
+            z = d.geom_xpos[i][2]
+            if z < min_z:
+                min_z = z
+                sphere_radius = m.geom_size[i][0]
+    
+    if min_z == float('inf'):
+        print("Warning: No contact spheres found")
+        return 0.0
+    
+    # Ground should be just below the sphere bottoms
+    ground_height = min_z - sphere_radius - clearance
+    
+    print(f"Lowest sphere center Z: {min_z:.6f}")
+    print(f"Sphere radius: {sphere_radius:.6f}")
+    print(f"Sphere bottom Z: {min_z - sphere_radius:.6f}")
+    print(f"Ground height (with {clearance*1000:.1f}mm clearance): {ground_height:.6f}")
+    
+    return ground_height
 
 
 def add_contact_spheres_to_body(
@@ -179,6 +233,7 @@ def modify_xml_with_contact_spheres(
     geometry_folder: str | None = None,
     num_regions: int = 240,
     radius_ratio: float = 0.4,
+    ground_clearance: float = 0.001,  # 1mm clearance for pressure sensing
 ) -> str:
     """
     Modify a MuJoCo XML file to add contact spheres to foot bodies.
@@ -189,6 +244,7 @@ def modify_xml_with_contact_spheres(
         geometry_folder: Folder containing foot STL files (defaults to Geometry/ next to XML)
         num_regions: Target number of contact spheres per foot
         radius_ratio: Sphere radius as fraction of cell size
+        ground_clearance: Gap between sphere bottoms and ground (for pressure sensing)
     
     Returns:
         Path to the output XML file
@@ -214,10 +270,6 @@ def modify_xml_with_contact_spheres(
     if worldbody is None:
         raise ValueError("Could not find 'worldbody' element")
     
-    # Add ground plane
-    ground_name = add_ground_plane(worldbody)
-    print(f"Added ground plane: {ground_name}")
-    
     all_sphere_names = []
     
     # Process right foot (calcn_r with r_foot.stl)
@@ -227,6 +279,8 @@ def modify_xml_with_contact_spheres(
         if calcn_r is not None:
             result_r = fit_contact_spheres(str(r_foot_stl), num_regions, radius_ratio)
             scale_r = get_mesh_scale(root, "r_foot")
+            print(f"Right foot scale: X={scale_r[0]:.4f}, Y={scale_r[1]:.4f}, Z={scale_r[2]:.4f}")
+            
             sphere_names_r = add_contact_spheres_to_body_scaled(calcn_r, result_r, "r", scale_r)
             all_sphere_names.extend(sphere_names_r)
             print(f"Added {len(sphere_names_r)} contact spheres to calcn_r")
@@ -242,6 +296,8 @@ def modify_xml_with_contact_spheres(
         if calcn_l is not None:
             result_l = fit_contact_spheres(str(l_foot_stl), num_regions, radius_ratio)
             scale_l = get_mesh_scale(root, "l_foot")
+            print(f"Left foot scale: X={scale_l[0]:.4f}, Y={scale_l[1]:.4f}, Z={scale_l[2]:.4f}")
+            
             sphere_names_l = add_contact_spheres_to_body_scaled(calcn_l, result_l, "l", scale_l)
             all_sphere_names.extend(sphere_names_l)
             print(f"Added {len(sphere_names_l)} contact spheres to calcn_l")
@@ -249,6 +305,9 @@ def modify_xml_with_contact_spheres(
             print("Warning: Could not find 'calcn_l' body")
     else:
         print(f"Warning: Left foot STL not found: {l_foot_stl}")
+    
+    # Add temporary ground plane at 0 (will update after MuJoCo check)
+    ground_name = add_ground_plane(worldbody, 0.0)
     
     # Find or create contact element
     contact_elem = root.find("contact")
@@ -262,25 +321,34 @@ def modify_xml_with_contact_spheres(
     # Update size element for more contacts
     size_elem = root.find("size")
     if size_elem is not None:
-        # Increase nconmax to handle all the contact spheres
         current_nconmax = int(size_elem.get("nconmax", "400"))
         new_nconmax = max(current_nconmax, len(all_sphere_names) * 2 + 100)
         size_elem.set("nconmax", str(new_nconmax))
         print(f"Updated nconmax: {current_nconmax} -> {new_nconmax}")
     
-    # Write output
+    # Write temporary output
     tree.write(output_path, encoding="unicode", xml_declaration=False)
     
-    # Add XML declaration and format
+    # Now use MuJoCo to find the correct ground height (accounts for keyframes)
+    print("\nComputing ground height from MuJoCo simulation...")
+    ground_height = compute_ground_height_from_mujoco(str(output_path), ground_clearance)
+    
+    # Update ground plane position in the XML
+    ground_geom = worldbody.find("geom[@name='ground_plane']")
+    if ground_geom is not None:
+        ground_geom.set("pos", f"0 0 {ground_height:.6f}")
+    
+    # Write final output
+    tree.write(output_path, encoding="unicode", xml_declaration=False)
+    
+    # Pretty print
     with open(output_path, "r") as f:
         content = f.read()
     
-    # Pretty print by re-parsing
     import xml.dom.minidom as minidom
     dom = minidom.parseString(content)
     pretty_xml = dom.toprettyxml(indent="  ")
     
-    # Remove extra blank lines and fix declaration
     lines = [line for line in pretty_xml.split('\n') if line.strip()]
     lines[0] = '<?xml version="1.0" encoding="UTF-8"?>'
     

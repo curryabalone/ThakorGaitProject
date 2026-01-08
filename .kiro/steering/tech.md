@@ -5,6 +5,7 @@
 
 ## Environment Management
 - Conda/Micromamba with `myoconverter/conda_env.yml`
+- **All code in this project must be run with `micromamba activate myoconverter`**
 
 ## Core Libraries
 
