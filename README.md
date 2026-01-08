@@ -54,3 +54,18 @@ python visualize_motion.py \
 - **Space**: Pause/Resume playback
 - **R**: Reset to start
 - **Q/Esc**: Quit
+
+### Troubleshooting (Windows)
+
+If you encounter a `TypeError` related to `os.PathLike` when importing `mujoco`, you may need to manually set the `CONDA_PREFIX` environment variable before running the script:
+
+```powershell
+# Set conda prefix (adjust path to your environment location if different)
+$env:CONDA_PREFIX='C:\Users\jaymo\anaconda3\envs\myoconverter'
+
+# Ensure you are in the CareyCode directory
+cd CareyCode
+
+# Run the script
+python visualize_motion.py
+```
