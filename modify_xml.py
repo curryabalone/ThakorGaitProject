@@ -32,7 +32,7 @@ def add_ground_plane(worldbody: ET.Element, ground_height: float = 0.0) -> str:
     return "ground_plane"
 
 
-def compute_ground_height_from_mujoco(xml_path: str, clearance: float = 0.001) -> float:
+def compute_ground_height_from_mujoco(xml_path: str, clearance: float = -0.001) -> float:
     """
     Load the model in MuJoCo and find the actual lowest contact sphere position.
     
@@ -40,7 +40,8 @@ def compute_ground_height_from_mujoco(xml_path: str, clearance: float = 0.001) -
     
     Args:
         xml_path: Path to the MuJoCo XML with contact spheres already added
-        clearance: Gap between sphere bottoms and ground
+        clearance: Gap between sphere bottoms and ground. 
+                   Negative = ground intersects spheres (needed for contact forces)
     
     Returns:
         Ground height in world Z coordinates
@@ -72,13 +73,13 @@ def compute_ground_height_from_mujoco(xml_path: str, clearance: float = 0.001) -
         print("Warning: No contact spheres found")
         return 0.0
     
-    # Ground should be just below the sphere bottoms
+    # Ground should be at sphere bottoms (negative clearance = slight penetration for contact)
     ground_height = min_z - sphere_radius - clearance
     
     print(f"Lowest sphere center Z: {min_z:.6f}")
     print(f"Sphere radius: {sphere_radius:.6f}")
     print(f"Sphere bottom Z: {min_z - sphere_radius:.6f}")
-    print(f"Ground height (with {clearance*1000:.1f}mm clearance): {ground_height:.6f}")
+    print(f"Ground height (clearance={clearance*1000:.1f}mm): {ground_height:.6f}")
     
     return ground_height
 
@@ -330,8 +331,9 @@ def modify_xml_with_contact_spheres(
     tree.write(output_path, encoding="unicode", xml_declaration=False)
     
     # Now use MuJoCo to find the correct ground height (accounts for keyframes)
+    # Use negative clearance so spheres slightly penetrate ground for contact detection
     print("\nComputing ground height from MuJoCo simulation...")
-    ground_height = compute_ground_height_from_mujoco(str(output_path), ground_clearance)
+    ground_height = compute_ground_height_from_mujoco(str(output_path), clearance=-0.0005)
     
     # Update ground plane position in the XML
     ground_geom = worldbody.find("geom[@name='ground_plane']")
