@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\jaymo\OneDrive\Desktop\GaitAnalysis\GaitCode\ThakorGaitProject\visualize_plantar_pressure.py", line 12, in <module>
+    import mujoco
+  File "C:\Users\jaymo\anaconda3\envs\myoconverter\lib\site-packages\mujoco\__init__.py", line 51, in <module>
+    _MJ_INSTALL_DIR = os.path.join(os.environ.get('CONDA_PREFIX'), 'Library')
+  File "C:\Users\jaymo\anaconda3\envs\myoconverter\lib\ntpath.py", line 105, in join
+    path = os.fspath(path)
+TypeError: expected str, bytes or os.PathLike object, not NoneType

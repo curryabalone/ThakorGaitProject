@@ -18,7 +18,7 @@ from matplotlib.patches import Polygon
 from pathlib import Path
 import argparse
 
-from fit_spheres import fit_contact_spheres, ContactSphereResult
+from fit_spheres import fit_contact_spheres, ContactSphereResult, FootGraph, SpatialRegularizer
 
 # Default paths
 DEFAULT_MODEL = "GaitDynamics/output/example_opensim_model_cvt1_contact.xml"
@@ -87,11 +87,12 @@ def compute_pressure_for_spheres(model, data, sphere_dict, ground_z, stiffness=5
         radius = info['radius']
         sphere_z = data.geom_xpos[geom_id, 2]
         penetration = ground_z - (sphere_z - radius)
-        pressures[idx] = stiffness * penetration if penetration > 0 else 0.0
+        # Refinement: Signed pressure
+        pressures[idx] = stiffness * penetration
     return pressures
 
 
-def simulate_and_collect_pressure(model_path, motion_path, sample_rate=30.0, stiffness=50000.0):
+def simulate_and_collect_pressure(model_path, motion_path, left_reg=None, right_reg=None, sample_rate=30.0, stiffness=50000.0):
     """Run simulation and collect pressure data."""
     print(f"Loading model: {model_path}")
     model = mujoco.MjModel.from_xml_path(model_path)
@@ -131,8 +132,20 @@ def simulate_and_collect_pressure(model_path, motion_path, sample_rate=30.0, sti
         for qpos_idx, mot_idx, scale in zip(qpos_indices, mot_indices, scale_factors):
             data.qpos[qpos_idx] = joint_data[frame_idx, mot_idx] * scale
         mujoco.mj_forward(model, data)
-        left_pressures.append(compute_pressure_for_spheres(model, data, left_spheres, ground_z, stiffness))
-        right_pressures.append(compute_pressure_for_spheres(model, data, right_spheres, ground_z, stiffness))
+        
+        l_press_raw = compute_pressure_for_spheres(model, data, left_spheres, ground_z, stiffness)
+        r_press_raw = compute_pressure_for_spheres(model, data, right_spheres, ground_z, stiffness)
+        
+        if left_reg:
+            left_pressures.append(left_reg.apply(l_press_raw))
+        else:
+            left_pressures.append(l_press_raw)
+            
+        if right_reg:
+            right_pressures.append(right_reg.apply(r_press_raw))
+        else:
+            right_pressures.append(r_press_raw)
+            
         if (i + 1) % 100 == 0:
             print(f"  Frame {i+1}/{len(sample_times)}")
     
@@ -155,9 +168,11 @@ def create_pressure_video(sample_times, pressure_data, fit_result, output_path, 
     x_min, x_max = x_vals.min() - 0.01, x_vals.max() + 0.01
     
     # Find max pressure for color scaling
-    max_pressure = max(max(p.values()) if p else 0 for p in pressure_data)
-    max_pressure = max(max_pressure, 1.0)
-    print(f"  Max pressure: {max_pressure:.1f} N")
+    # Refinement: Use a fixed max to better visualize smoothing across time
+    # Typical gait GRF for one foot is ~1.2x body weight. Let's assume ~800N total,
+    # divided among spheres. A peak of 50-100N per sphere is reasonable.
+    max_pressure = 100.0 # Fixed max N for consistent color mapping
+    print(f"  Fixed Max pressure for visualization: {max_pressure:.1f} N")
     
     # Colormap
     cmap = LinearSegmentedColormap.from_list('pressure', ['#e0e0e0', '#00aa00', '#ffff00', '#ff0000'])
@@ -225,9 +240,18 @@ def main(model_path, motion_path, output_dir, geometry_dir, fps=30.0, stiffness=
     right_fit = fit_contact_spheres(str(geometry_dir / "r_foot.stl"))
     print(f"  Left: {left_fit.num_spheres} cells, Right: {right_fit.num_spheres} cells")
     
+    # Setup Spatial Regularization
+    print("Initializing Spatial Regularization...")
+    d_thresh = 2.5 * left_fit.cell_size
+    left_graph = FootGraph(left_fit.cell_centers, d_thresh, k_neighbors=6)
+    right_graph = FootGraph(right_fit.cell_centers, d_thresh, k_neighbors=6)
+    
+    left_reg = SpatialRegularizer(left_graph, lambda_spatial=50.0)
+    right_reg = SpatialRegularizer(right_graph, lambda_spatial=50.0)
+    
     # Run simulation to collect pressure data
     sample_times, left_pressures, right_pressures = \
-        simulate_and_collect_pressure(model_path, motion_path, fps, stiffness)
+        simulate_and_collect_pressure(model_path, motion_path, left_reg, right_reg, fps, stiffness)
     
     # Create videos
     create_pressure_video(sample_times, left_pressures, left_fit,

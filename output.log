@@ -1,0 +1,25 @@
+Loading model: GaitDynamics/output/example_opensim_model_cvt1_contact.xml
+Loading motion: GaitDynamics/example_mot_complete_kinematics.mot
+Loading foot contours...
+Initializing Spatial Regularization...
+Rendering 600 frames...
+Saving to GaitDynamics\output\cop_visualization.mp4...
+  Frame 0/600
+  Frame 0/600
+  Frame 50/600
+  Frame 100/600
+  Frame 150/600
+  Frame 200/600
+  Frame 250/600
+  Frame 300/600
+  Frame 350/600
+  Frame 400/600
+  Frame 450/600
+  Frame 500/600
+  Frame 550/600
+
+--- Spatial Regularization Metrics ---
+Mean Total Force: Raw=5168.57N, Smooth=5168.57N (Delta=0.0000N)
+Left CoP Jitter (std vel): Raw=0.0447, Smooth=0.0447 (Reduction: 0.0%)
+Right CoP Jitter (std vel): Raw=0.0518, Smooth=0.0518 (Reduction: 0.0%)
+Done!

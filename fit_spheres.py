@@ -205,6 +205,126 @@ def visualize(result: ContactSphereResult, show_squares=True, show_spheres=True)
 
 
 
+
+class FootGraph:
+    """
+    Geometry-aware graph for the plantar surface.
+    Decouples spatial connectivity from the smoothing math.
+    """
+    def __init__(self, points: np.ndarray, d_thresh: float, k_neighbors: int = 6):
+        """
+        Build adjacency and normalized Laplacian.
+        
+        Args:
+            points: (N, 2) or (N, 3) array of sphere positions.
+            d_thresh: Distance threshold for neighborhood.
+            k_neighbors: Minimum number of nearest neighbors to connect.
+        """
+        self.points = points
+        self.num_nodes = len(points)
+        self.d_thresh = d_thresh
+        self.k_neighbors = k_neighbors
+        
+        # Build Adjacency Matrix W
+        # Using a gaussian kernel for weights
+        sigma = d_thresh / 2.0
+        
+        # Vectorized distance computation
+        from scipy.spatial.distance import cdist
+        dists = cdist(points, points)
+        
+        # 1. Distance-based mask
+        dist_mask = dists < d_thresh
+        
+        # 2. k-NN mask
+        knn_mask = np.zeros_like(dist_mask, dtype=bool)
+        if k_neighbors > 0:
+            # Find indices of k+1 nearest neighbors (including self)
+            knn_indices = np.argsort(dists, axis=1)[:, :k_neighbors + 1]
+            rows = np.arange(self.num_nodes)[:, np.newaxis]
+            knn_mask[rows, knn_indices] = True
+            
+        # Hybrid mask
+        mask = dist_mask | knn_mask
+        
+        W = np.zeros_like(dists)
+        W[mask] = np.exp(-(dists[mask]**2) / (sigma**2))
+        
+        # Remove self-loops
+        np.fill_diagonal(W, 0)
+        
+        # Row-normalize W to get a transition-like matrix
+        row_sums = W.sum(axis=1)
+        row_sums[row_sums == 0] = 1.0
+        self.W_norm = W / row_sums[:, np.newaxis]
+        
+        # Normalized Laplacian L = I - W_norm
+        self.L = np.eye(self.num_nodes) - self.W_norm
+
+
+class SpatialRegularizer:
+    """
+    Implements spatial coupling via graph Laplacian smoothing:
+    p = (I + lambda * L)^-1 * p_raw
+    """
+    def __init__(self, graph: FootGraph, lambda_spatial: float = 1.0, preserve_total_force: bool = True):
+        """
+        Precompute the smoothing operator.
+        
+        Args:
+            graph: FootGraph instance.
+            lambda_spatial: Scalar or array (N,) for smoothing strength.
+            preserve_total_force: If True, rescale output to match input sum.
+        """
+        self.graph = graph
+        self.preserve_total_force = preserve_total_force
+        
+        # A = I + lambda * L
+        if np.isscalar(lambda_spatial):
+            A = np.eye(graph.num_nodes) + lambda_spatial * graph.L
+        else:
+            # lambda_spatial is an array (N,)
+            # Broad-casting lambda per row
+            A = np.eye(graph.num_nodes) + lambda_spatial[:, np.newaxis] * graph.L
+            
+        self.A_inv = np.linalg.inv(A)
+
+    def apply(self, pressures_dict: dict) -> dict:
+        """
+        Apply smoothing to a dictionary of pressures.
+        
+        Args:
+            pressures_dict: {index: value} (can be signed)
+            
+        Returns:
+            {index: smoothed_value} (always non-negative)
+        """
+        # Convert dict to vector
+        p_raw = np.zeros(self.graph.num_nodes)
+        for idx, val in pressures_dict.items():
+            if idx < self.graph.num_nodes:
+                p_raw[idx] = val
+                
+        # Target sum: only the positive (actual contact) forces
+        p_raw_positive = np.maximum(p_raw, 0.0)
+        sum_target = np.sum(p_raw_positive)
+        
+        # Apply smoothing to the signed signal
+        p_smooth_signed = self.A_inv @ p_raw
+        
+        # Clip to non-negative AFTER smoothing
+        p_smooth = np.maximum(p_smooth_signed, 0.0)
+        
+        # Preserve total positive force
+        if self.preserve_total_force and sum_target > 1e-6:
+            sum_smooth = np.sum(p_smooth)
+            if sum_smooth > 1e-9:
+                p_smooth *= (sum_target / sum_smooth)
+                
+        # Convert back to dict
+        return {i: float(v) for i, v in enumerate(p_smooth)}
+
+
 if __name__ == '__main__':
     stl_path = 'GaitDynamics/output/Geometry/r_foot.stl'
     
