@@ -18,7 +18,7 @@ from matplotlib.patches import Polygon
 from pathlib import Path
 import argparse
 
-from fit_spheres import fit_contact_spheres, ContactSphereResult, FootGraph, SpatialRegularizer
+from fit_spheres import fit_contact_spheres, ContactSphereResult
 
 # Default paths
 DEFAULT_MODEL = "GaitDynamics/output/example_opensim_model_cvt1_contact.xml"
@@ -92,7 +92,7 @@ def compute_pressure_for_spheres(model, data, sphere_dict, ground_z, stiffness=5
     return pressures
 
 
-def simulate_and_collect_pressure(model_path, motion_path, left_reg=None, right_reg=None, sample_rate=30.0, stiffness=50000.0):
+def simulate_and_collect_pressure(model_path, motion_path, sample_rate=30.0, stiffness=50000.0):
     """Run simulation and collect pressure data."""
     print(f"Loading model: {model_path}")
     model = mujoco.MjModel.from_xml_path(model_path)
@@ -133,18 +133,8 @@ def simulate_and_collect_pressure(model_path, motion_path, left_reg=None, right_
             data.qpos[qpos_idx] = joint_data[frame_idx, mot_idx] * scale
         mujoco.mj_forward(model, data)
         
-        l_press_raw = compute_pressure_for_spheres(model, data, left_spheres, ground_z, stiffness)
-        r_press_raw = compute_pressure_for_spheres(model, data, right_spheres, ground_z, stiffness)
-        
-        if left_reg:
-            left_pressures.append(left_reg.apply(l_press_raw))
-        else:
-            left_pressures.append(l_press_raw)
-            
-        if right_reg:
-            right_pressures.append(right_reg.apply(r_press_raw))
-        else:
-            right_pressures.append(r_press_raw)
+        left_pressures.append(compute_pressure_for_spheres(model, data, left_spheres, ground_z, stiffness))
+        right_pressures.append(compute_pressure_for_spheres(model, data, right_spheres, ground_z, stiffness))
             
         if (i + 1) % 100 == 0:
             print(f"  Frame {i+1}/{len(sample_times)}")
@@ -240,18 +230,9 @@ def main(model_path, motion_path, output_dir, geometry_dir, fps=30.0, stiffness=
     right_fit = fit_contact_spheres(str(geometry_dir / "r_foot.stl"))
     print(f"  Left: {left_fit.num_spheres} cells, Right: {right_fit.num_spheres} cells")
     
-    # Setup Spatial Regularization
-    print("Initializing Spatial Regularization...")
-    d_thresh = 2.5 * left_fit.cell_size
-    left_graph = FootGraph(left_fit.cell_centers, d_thresh, k_neighbors=6)
-    right_graph = FootGraph(right_fit.cell_centers, d_thresh, k_neighbors=6)
-    
-    left_reg = SpatialRegularizer(left_graph, lambda_spatial=50.0)
-    right_reg = SpatialRegularizer(right_graph, lambda_spatial=50.0)
-    
     # Run simulation to collect pressure data
     sample_times, left_pressures, right_pressures = \
-        simulate_and_collect_pressure(model_path, motion_path, left_reg, right_reg, fps, stiffness)
+        simulate_and_collect_pressure(model_path, motion_path, fps, stiffness)
     
     # Create videos
     create_pressure_video(sample_times, left_pressures, left_fit,

@@ -21,7 +21,7 @@ import matplotlib.animation as animation
 from pathlib import Path
 import argparse
 
-from fit_spheres import fit_contact_spheres, FootGraph, SpatialRegularizer
+from fit_spheres import fit_contact_spheres
 
 # Default paths
 DEFAULT_MODEL = "GaitDynamics/output/example_opensim_model_cvt1_contact.xml"
@@ -184,26 +184,6 @@ def create_cop_video(model_path, motion_path, geometry_dir, output_dir, fps=30, 
     left_fit = fit_contact_spheres(str(geometry_dir / "l_foot.stl"))
     right_fit = fit_contact_spheres(str(geometry_dir / "r_foot.stl"))
     
-    # Setup Spatial Regularization
-    print("Initializing Spatial Regularization...")
-    # Refinement: Wider threshold (2.5x) and higher lambda (50)
-    d_thresh = 2.5 * left_fit.cell_size
-    left_graph = FootGraph(left_fit.cell_centers, d_thresh, k_neighbors=6)
-    right_graph = FootGraph(right_fit.cell_centers, d_thresh, k_neighbors=6)
-    
-    left_reg = SpatialRegularizer(left_graph, lambda_spatial=50.0)
-    right_reg = SpatialRegularizer(right_graph, lambda_spatial=50.0)
-    
-    # Metric tracking
-    metrics = {
-        'total_force_raw': [],
-        'total_force_smooth': [],
-        'l_cop_raw': [],
-        'r_cop_raw': [],
-        'l_cop_smooth': [],
-        'r_cop_smooth': []
-    }
-    
     # Compute ground height
     for qpos_idx, mot_idx, scale in zip(qpos_indices, mot_indices, scale_factors):
         data.qpos[qpos_idx] = joint_data[0, mot_idx] * scale
@@ -251,30 +231,13 @@ def create_cop_video(model_path, motion_path, geometry_dir, output_dir, fps=30, 
             data.qpos[qpos_idx] = joint_data[mot_frame, mot_idx] * scale
         mujoco.mj_forward(model, data)
         
-        # Compute Pressures (Raw)
-        left_press_raw = compute_pressures(model, data, left_spheres, ground_z, stiffness)
-        right_press_raw = compute_pressures(model, data, right_spheres, ground_z, stiffness)
-        
-        # Apply Spatial Regularization
-        left_press = left_reg.apply(left_press_raw)
-        right_press = right_reg.apply(right_press_raw)
-        
-        # Track metrics (total force)
-        metrics['total_force_raw'].append(sum(left_press_raw.values()) + sum(right_press_raw.values()))
-        metrics['total_force_smooth'].append(sum(left_press.values()) + sum(right_press.values()))
+        # Compute Pressures
+        left_press = compute_pressures(model, data, left_spheres, ground_z, stiffness)
+        right_press = compute_pressures(model, data, right_spheres, ground_z, stiffness)
         
         # Compute CoPs
-        # Local (Smoothed for plotting)
         l_cop = compute_cop(left_press, left_fit.cell_centers)
         r_cop = compute_cop(right_press, right_fit.cell_centers)
-        
-        # Metrics: Raw CoP for comparison
-        l_cop_raw = compute_cop(left_press_raw, left_fit.cell_centers)
-        r_cop_raw = compute_cop(right_press_raw, right_fit.cell_centers)
-        metrics['l_cop_raw'].append(l_cop_raw)
-        metrics['r_cop_raw'].append(r_cop_raw)
-        metrics['l_cop_smooth'].append(l_cop)
-        metrics['r_cop_smooth'].append(r_cop)
         
         # Global
         g_cop = compute_global_cop(model, data, left_press, right_press, left_spheres, right_spheres)
@@ -367,28 +330,6 @@ def create_cop_video(model_path, motion_path, geometry_dir, output_dir, fps=30, 
     writer = animation.FFMpegWriter(fps=fps, bitrate=5000)
     anim.save(output_path, writer=writer)
     plt.close(fig)
-    
-    # Report Metrics
-    print("\n--- Spatial Regularization Metrics ---")
-    f_raw = np.mean(metrics['total_force_raw'])
-    f_smooth = np.mean(metrics['total_force_smooth'])
-    print(f"Mean Total Force: Raw={f_raw:.2f}N, Smooth={f_smooth:.2f}N (Delta={f_smooth-f_raw:.4f}N)")
-    
-    def calc_jitter(cop_list):
-        # Calculate velocity (diff) and then std of velocity
-        cops = [c for c in cop_list if c is not None]
-        if len(cops) < 2: return 0.0
-        cops = np.array(cops)
-        vel = np.linalg.norm(np.diff(cops, axis=0), axis=1)
-        return np.std(vel)
-
-    l_jitter_raw = calc_jitter(metrics['l_cop_raw'])
-    l_jitter_smooth = calc_jitter(metrics['l_cop_smooth'])
-    r_jitter_raw = calc_jitter(metrics['r_cop_raw'])
-    r_jitter_smooth = calc_jitter(metrics['r_cop_smooth'])
-    
-    print(f"Left CoP Jitter (std vel): Raw={l_jitter_raw:.4f}, Smooth={l_jitter_smooth:.4f} (Reduction: {100*(1-l_jitter_smooth/l_jitter_raw):.1f}%)")
-    print(f"Right CoP Jitter (std vel): Raw={r_jitter_raw:.4f}, Smooth={r_jitter_smooth:.4f} (Reduction: {100*(1-r_jitter_smooth/r_jitter_raw):.1f}%)")
     
     print("Done!")
 
