@@ -22,6 +22,7 @@ from pathlib import Path
 import argparse
 
 from fit_spheres import fit_contact_spheres
+from spatial_coupling import SpatialRegularizer
 
 # Default paths
 DEFAULT_MODEL = "GaitDynamics/output/example_opensim_model_cvt1_contact.xml"
@@ -164,7 +165,8 @@ def render_mujoco_frame(model, data, renderer, width=640, height=480):
     return renderer.render()
 
 
-def create_cop_video(model_path, motion_path, geometry_dir, output_dir, fps=30, stiffness=50000.0):
+def create_cop_video(model_path, motion_path, geometry_dir, output_dir, fps=30, stiffness=50000.0, 
+                     enable_spatial=True, lambda_spatial=0.1, output_suffix=""):
     print(f"Loading model: {model_path}")
     model = mujoco.MjModel.from_xml_path(model_path)
     data = mujoco.MjData(model)
@@ -183,6 +185,13 @@ def create_cop_video(model_path, motion_path, geometry_dir, output_dir, fps=30, 
     geometry_dir = Path(geometry_dir)
     left_fit = fit_contact_spheres(str(geometry_dir / "l_foot.stl"))
     right_fit = fit_contact_spheres(str(geometry_dir / "r_foot.stl"))
+    
+    # Setup Spatial Regularization
+    print(f"Initializing Spatial Regularization (enabled={enable_spatial})...")
+    left_reg = SpatialRegularizer(left_fit.cell_centers, lambda_spatial=lambda_spatial, 
+                                   enable_spatial=enable_spatial, k_neighbors=12)
+    right_reg = SpatialRegularizer(right_fit.cell_centers, lambda_spatial=lambda_spatial,
+                                    enable_spatial=enable_spatial, k_neighbors=12)
     
     # Compute ground height
     for qpos_idx, mot_idx, scale in zip(qpos_indices, mot_indices, scale_factors):
@@ -231,9 +240,13 @@ def create_cop_video(model_path, motion_path, geometry_dir, output_dir, fps=30, 
             data.qpos[qpos_idx] = joint_data[mot_frame, mot_idx] * scale
         mujoco.mj_forward(model, data)
         
-        # Compute Pressures
-        left_press = compute_pressures(model, data, left_spheres, ground_z, stiffness)
-        right_press = compute_pressures(model, data, right_spheres, ground_z, stiffness)
+        # Compute Pressures (Raw)
+        left_press_raw = compute_pressures(model, data, left_spheres, ground_z, stiffness)
+        right_press_raw = compute_pressures(model, data, right_spheres, ground_z, stiffness)
+        
+        # Apply Spatial Regularization
+        left_press, _ = left_reg(left_press_raw)
+        right_press, _ = right_reg(right_press_raw)
         
         # Compute CoPs
         l_cop = compute_cop(left_press, left_fit.cell_centers)
@@ -325,13 +338,14 @@ def create_cop_video(model_path, motion_path, geometry_dir, output_dir, fps=30, 
         
     anim = animation.FuncAnimation(fig, animate, frames=n_frames, interval=1000/fps, blit=False)
     
-    output_path = Path(output_dir) / "cop_visualization.mp4"
+    filename = f"cop_visualization{output_suffix}.mp4"
+    output_path = Path(output_dir) / filename
     print(f"Saving to {output_path}...")
     writer = animation.FFMpegWriter(fps=fps, bitrate=5000)
     anim.save(output_path, writer=writer)
     plt.close(fig)
     
-    print("Done!")
+    print(f"Done! Saved to {output_path}")
 
 
 if __name__ == '__main__':
@@ -342,6 +356,14 @@ if __name__ == '__main__':
     parser.add_argument('--geometry', '-g', default=DEFAULT_GEOMETRY)
     parser.add_argument('--fps', type=float, default=30.0)
     parser.add_argument('--stiffness', type=float, default=50000.0)
+    parser.add_argument('--enable-spatial', action='store_true', default=False,
+                       help='Enable spatial coupling (default: disabled for raw)')
+    parser.add_argument('--lambda-spatial', type=float, default=5.0,
+                       help='Spatial coupling strength (1.0-10.0)')
+    parser.add_argument('--output-suffix', default='',
+                       help='Suffix for output filename (e.g., "_smoothed")')
     args = parser.parse_args()
     
-    create_cop_video(args.model, args.motion, args.geometry, args.output_dir, args.fps, args.stiffness)
+    create_cop_video(args.model, args.motion, args.geometry, args.output_dir, 
+                    args.fps, args.stiffness, args.enable_spatial, 
+                    args.lambda_spatial, args.output_suffix)

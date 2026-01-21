@@ -19,6 +19,7 @@ from pathlib import Path
 import argparse
 
 from fit_spheres import fit_contact_spheres, ContactSphereResult
+from spatial_coupling import SpatialRegularizer
 
 # Default paths
 DEFAULT_MODEL = "GaitDynamics/output/example_opensim_model_cvt1_contact.xml"
@@ -92,7 +93,7 @@ def compute_pressure_for_spheres(model, data, sphere_dict, ground_z, stiffness=5
     return pressures
 
 
-def simulate_and_collect_pressure(model_path, motion_path, sample_rate=30.0, stiffness=50000.0):
+def simulate_and_collect_pressure(model_path, motion_path, left_reg, right_reg, sample_rate=30.0, stiffness=50000.0):
     """Run simulation and collect pressure data."""
     print(f"Loading model: {model_path}")
     model = mujoco.MjModel.from_xml_path(model_path)
@@ -133,8 +134,15 @@ def simulate_and_collect_pressure(model_path, motion_path, sample_rate=30.0, sti
             data.qpos[qpos_idx] = joint_data[frame_idx, mot_idx] * scale
         mujoco.mj_forward(model, data)
         
-        left_pressures.append(compute_pressure_for_spheres(model, data, left_spheres, ground_z, stiffness))
-        right_pressures.append(compute_pressure_for_spheres(model, data, right_spheres, ground_z, stiffness))
+        l_press_raw = compute_pressure_for_spheres(model, data, left_spheres, ground_z, stiffness)
+        r_press_raw = compute_pressure_for_spheres(model, data, right_spheres, ground_z, stiffness)
+        
+        # Apply spatial regularization
+        l_press, _ = left_reg(l_press_raw)
+        r_press, _ = right_reg(r_press_raw)
+        
+        left_pressures.append(l_press)
+        right_pressures.append(r_press)
             
         if (i + 1) % 100 == 0:
             print(f"  Frame {i+1}/{len(sample_times)}")
@@ -218,7 +226,8 @@ def create_pressure_video(sample_times, pressure_data, fit_result, output_path, 
     print(f"  Saved: {output_path}")
 
 
-def main(model_path, motion_path, output_dir, geometry_dir, fps=30.0, stiffness=50000.0):
+def main(model_path, motion_path, output_dir, geometry_dir, fps=30.0, stiffness=50000.0,
+         enable_spatial=True, lambda_spatial=0.1, output_suffix=""):
     """Generate plantar pressure videos."""
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -230,15 +239,22 @@ def main(model_path, motion_path, output_dir, geometry_dir, fps=30.0, stiffness=
     right_fit = fit_contact_spheres(str(geometry_dir / "r_foot.stl"))
     print(f"  Left: {left_fit.num_spheres} cells, Right: {right_fit.num_spheres} cells")
     
+    # Setup Spatial Regularization
+    print(f"Initializing Spatial Regularization (enabled={enable_spatial})...")
+    left_reg = SpatialRegularizer(left_fit.cell_centers, lambda_spatial=lambda_spatial,
+                                   enable_spatial=enable_spatial, k_neighbors=12)
+    right_reg = SpatialRegularizer(right_fit.cell_centers, lambda_spatial=lambda_spatial,
+                                    enable_spatial=enable_spatial, k_neighbors=12)
+    
     # Run simulation to collect pressure data
     sample_times, left_pressures, right_pressures = \
-        simulate_and_collect_pressure(model_path, motion_path, fps, stiffness)
+        simulate_and_collect_pressure(model_path, motion_path, left_reg, right_reg, fps, stiffness)
     
     # Create videos
     create_pressure_video(sample_times, left_pressures, left_fit,
-                         output_dir / "left_foot_pressure.mp4", "Left", fps, flip_z=False)
+                         output_dir / f"left_foot_pressure{output_suffix}.mp4", "Left", fps, flip_z=False)
     create_pressure_video(sample_times, right_pressures, right_fit,
-                         output_dir / "right_foot_pressure.mp4", "Right", fps, flip_z=True)
+                         output_dir / f"right_foot_pressure{output_suffix}.mp4", "Right", fps, flip_z=True)
     
     print(f"\nDone! Videos saved to {output_dir}/")
 
@@ -251,6 +267,13 @@ if __name__ == '__main__':
     parser.add_argument('--geometry', '-g', default=DEFAULT_GEOMETRY)
     parser.add_argument('--fps', type=float, default=30.0)
     parser.add_argument('--stiffness', type=float, default=50000.0)
+    parser.add_argument('--enable-spatial', action='store_true', default=False,
+                       help='Enable spatial coupling (default: disabled for raw)')
+    parser.add_argument('--lambda-spatial', type=float, default=5.0,
+                       help='Spatial coupling strength (1.0-10.0)')
+    parser.add_argument('--output-suffix', default='',
+                       help='Suffix for output filename (e.g., "_smoothed")')
     args = parser.parse_args()
     
-    main(args.model, args.motion, args.output_dir, args.geometry, args.fps, args.stiffness)
+    main(args.model, args.motion, args.output_dir, args.geometry, args.fps, args.stiffness,
+         args.enable_spatial, args.lambda_spatial, args.output_suffix)
